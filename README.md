@@ -6,7 +6,7 @@ On first running of the app, it will genereta tables and insert username and pas
 please uncomment the commented lines to enable this for the first time you run the app.
 The base URL is : http://localhost:9200/api
                   other endpoints will followthe base url for example to hit sign in, navigate to /signIn to hit customers navigate 
-                  to /customers    -----any other endpoint created will follow suit
+                  to /customers    -----any other endpoint created will follow suit --- please click edit of this ReadMe file to have a text view of the sample requests and outputs: 
 
 Method: POST
 URL: http://localhost:9200/api/auth/signIn
@@ -82,7 +82,42 @@ Response:
     }
 }
 
+Method: POST 
+URL: http://localhost:9200/api/customers/{customerId}/loans
+Body: 
+{
+   "loanPurpose":"Development loan",
+   "loanType":"emergency",
+   "loanAmount":"120000",
+   "bankName":"Faulu bank",
+   "dateGranted":"2018-01-10T21:00:00.000Z",
+   "repaymentPeriod":"2 years",
+   "outstandingBalance":"13000"
+}
 
+Method: GET 
+URL: http://localhost:9200/api/loans
+Body:
+{
+    "_embedded": {
+        "loans": []
+    },
+    "_links": {
+        "self": {
+            "href": "http://localhost:9200/api/loans{?page,size,sort}",
+            "templated": true
+        },
+        "profile": {
+            "href": "http://localhost:9200/api/profile/loans"
+        }
+    },
+    "page": {
+        "size": 20,
+        "totalElements": 0,
+        "totalPages": 0,
+        "number": 0
+    }
+}
 
 
 
